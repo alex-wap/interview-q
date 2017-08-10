@@ -2,12 +2,14 @@
 
 ## How to submit a question/solution to this repo
 - fork repo at [http://github.com/alex-wap/interview-q](http://github.com/alex-wap/interview-q)
+- clone repo on your computer `git clone http://github.com/your-username/interview-q`
 - cd into folder `cd interview-q`
 - create branch `git checkout -b branch-name`
 - create folder and markdown file (use same name for both)
 - add link to markdown file to [List of Problems](#list-of-problems)
 - `git add .` , `git commit -m "problem name"` , `git push origin branch-name`
 - go to your forked repo on github and click `New pull request`
+- [more github tips](https://github.com/alex-wap/gitguide)
 
 ## Table of Contents
 - [List of Problems](#list-of-problems)
