@@ -1,7 +1,8 @@
 # Interview Questions
 
 ## How to submit a problem to this repo
-- fork repo at [https://github.com/alex-wap/interview-q.git](https://github.com/alex-wap/interview-q.git)
+- fork repo at [http://github.com/alex-wap/interview-q](http://github.com/alex-wap/interview-q)
+- cd into folder `cd interview-q`
 - create branch `git checkout -b username`
 - add folder and markdown file (with same name)
 - 
