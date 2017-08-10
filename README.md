@@ -20,6 +20,7 @@
 - [BST - Depth First Search](https://github.com/alex-wap/interview-q/blob/master/bst-dfs/bst-dfs.md)
 - [BST - Breadth First Search](https://github.com/alex-wap/interview-q/blob/master/bst-bfs/bst-bfs.md)
 - [BT - "Spiral Order"](https://github.com/alex-wap/interview-q/blob/master/spiral/spiral.md)
+- [Histogram Area](https://github.com/alex-wap/interview-q/blob/master/histogram/histogram.md)
 
 ## Framework for Solving Problems
 
