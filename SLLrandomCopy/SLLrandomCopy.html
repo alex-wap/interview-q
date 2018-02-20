@@ -1,0 +1,61 @@
+<script>
+// https://repl.it/repls/LovingPhonyEmacs
+function Node(val) {
+    this.val = val;
+    this.next = null;
+    this.rand = null;
+}
+
+function SLL() {
+    this.head = null;
+}
+
+function copyLLRandom(SLL){
+  // loop 1, add copies as next
+  var current = SLL.head;
+  while (current){
+    var node = new Node(current.val);
+    node.next = current.next;
+    current.next = node;
+    current = node.next;
+  }
+  // loop 2, assign rand attr
+  current = SLL.head;
+  while (current){
+    current.next.rand = current.rand.next;
+    current = current.next.next;
+  }
+  // loop 3, separate lists
+  current = SLL.head;
+  var newHead = current.next;
+  while (current.next.next){
+    node = current.next;
+    current.next = node.next;
+    node.next = node.next.next;
+    current = current.next;
+  }
+  return newHead;
+}
+
+var newSLL = new SLL();
+newSLL.head = new Node(1);
+newSLL.head.next = new Node(2);
+newSLL.head.next.next = new Node(3);
+newSLL.head.next.next.next = new Node(4);
+newSLL.head.rand = newSLL.head.next.next;
+newSLL.head.next.rand = newSLL.head.next.next.next;
+newSLL.head.next.next.rand = newSLL.head;
+newSLL.head.next.next.next.rand = newSLL.head.next;
+var cur = newSLL.head;
+while (cur){
+  console.log("value: "+cur.val+"\nrand: "+cur.rand.val);
+  cur = cur.next;
+}
+
+var copySLL = copyLLRandom(newSLL);
+var curr = copySLL;
+while (curr){
+  console.log("value: "+curr.val+"\nrand: "+curr.rand.val);
+  curr = curr.next;
+}
+</script>
