@@ -1,0 +1,21 @@
+<script>
+// https://repl.it/repls/DeliciousAmusingCondition
+function removeBlanks(str){
+  var strArr = str.split("");
+  // var newStr = "";
+  for (var i = 0; i < strArr.length; i++){
+    // space inefficient
+    // if (strArr[i] != " "){
+      // space inefficient
+      // newStr += strArr[i];
+    // }
+    if (strArr[i] == " "){
+      strArr.splice(i, 1);
+      i--;
+    }
+  }
+  return strArr.join("");
+}
+
+removeBlanks("  play  that   Funky Music  ");
+</script>
