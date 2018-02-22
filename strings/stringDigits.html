@@ -1,0 +1,14 @@
+<script>
+// https://repl.it/repls/FractalTrustyCylinders
+function stringDigits(str){
+  var number = 0;
+  for (var i = 0; i < str.length; i++){
+    if (Number.parseInt(str[i]) > -1){
+      number = number*10 + Number.parseInt(str[i]);
+    }
+  }
+  return number;
+}
+
+stringDigits("0s1a3y5w7h9a2t4?6!8?0");
+</script>
