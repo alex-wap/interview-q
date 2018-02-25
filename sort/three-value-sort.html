@@ -1,0 +1,33 @@
+<script>
+  
+  function dutchFlag(arr, midValue){
+    var i = 0;
+    var j = 0;
+    var n = arr.length-1;
+    var temp;
+    while (j <= n){
+      if (arr[j] < midValue){
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+        i++;j++;
+      }
+      else if (arr[j] > midValue){
+        temp = arr[j];
+        arr[j] = arr[n];
+        arr[n] = temp;
+        n--;
+      }
+      else{
+        j++;
+      }
+    }
+    return arr;
+  }
+  
+  var arr = [1,2,0,0,0,0,0,0,1,2,1,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,1,1,2];
+  
+  dutchFlag(arr,1);
+
+</script>
+https://repl.it/repls/UglyImpartialNetbsd
