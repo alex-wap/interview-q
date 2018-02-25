@@ -1,0 +1,20 @@
+<script>
+  
+function Arrs2Map(arr1,arr2){
+  var obj = {};
+  if(arr2.length > arr1.length){
+    return false;
+  }
+  for (var i = 0; i < arr1.length; i++){
+    obj[arr1[i]] = arr2[i];
+  }
+  return obj;
+}
+
+var arr1 = ["abc", 3, "yo"];
+var arr2  = [42, "wassup", true]; 
+
+Arrs2Map(arr1,arr2);
+
+</script>
+https://repl.it/repls/AmusingPointedToolbox

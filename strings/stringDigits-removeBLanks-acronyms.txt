@@ -1,0 +1,49 @@
+function stringDigits(str){
+  var number = 0;
+  for (var i = 0; i < str.length; i++){
+    if (Number.parseInt(str[i]) > -1){
+      number = number*10 + Number.parseInt(str[i]);
+    }
+  }
+  return number;
+}
+
+stringDigits("0s1a3y5w7h9a2t4?6!8?0");
+
+function removeBlanks(str){
+  var strArr = str.split("");
+  // var newStr = "";
+  for (var i = 0; i < strArr.length; i++){
+    // space inefficient
+    // if (strArr[i] != " "){
+      // space inefficient
+      // newStr += strArr[i];
+    // }
+    if (strArr[i] == " "){
+      strArr.splice(i, 1);
+      i--;
+    }
+  }
+  return strArr.join("");
+}
+
+removeBlanks("  play  that   Funky Music  ");
+
+function acronym(str){
+  var strArr = str.split(" ");
+  var newStr = "";
+  for (var i = 0; i < strArr.length; i++){
+    if (strArr[i][0]){
+      if (strArr[i].charCodeAt(0) >= 97 && strArr[i].charCodeAt(0) <= 122){
+        var lowerCode = strArr[i].charCodeAt(i[0]);
+        newStr += String.fromCharCode(lowerCode-32);
+      }
+      else{
+        newStr += strArr[i][0];
+      }
+    }
+  }
+  return newStr;
+}
+
+acronym("there's no free lunch  -  gotta pay yer way");

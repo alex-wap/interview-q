@@ -1,0 +1,63 @@
+function Arrs2Map(arr1,arr2){
+  var obj = {};
+  if(arr2.length > arr1.length){
+    return false;
+  }
+  for (var i = 0; i < arr1.length; i++){
+    obj[arr1[i]] = arr2[i];
+  }
+  return obj;
+}
+
+var arr1 = ["abc", 3, "yo"];
+var arr2  = [42, "wassup", true]; 
+
+Arrs2Map(arr1,arr2);
+
+function invertHash(object){
+  var newobj = {};
+  for (var key in object){
+    newobj[object[key]] = key;
+  }
+  return newobj;
+}
+
+var obj = {"name": "Zaphod", "numHeads": 2};
+
+invertHash(obj);
+
+function myJoin(arr){
+  var str = "";
+  for (var i = 0; i < arr.length; i++){
+    str += arr[i]
+  }
+  return str;
+}
+
+var arr = ["h","e","l","l","o"];
+
+myJoin(arr);
+
+function mySplit(str){
+  var arr = [];
+  for (var i = 0; i < str.length; i++){
+    arr.push(str[i]);
+  }
+  return arr;
+}
+
+var str = "hello";
+
+mySplit(str);
+
+function reverseString(str){
+  var newStr = "";
+  for (var i = str.length-1; i > -1; i--){
+    newStr += str[i];
+  }
+  return newStr;
+}
+
+var str = "hello";
+
+reverseString(str);

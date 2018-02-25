@@ -1,15 +1,23 @@
 <script>
+  
 function acronym(str){
   var strArr = str.split(" ");
   var newStr = "";
   for (var i = 0; i < strArr.length; i++){
     if (strArr[i][0]){
-      newStr += strArr[i][0];
+      if (strArr[i].charCodeAt(0) >= 97 && strArr[i].charCodeAt(0) <= 122){
+        var lowerCode = strArr[i].charCodeAt(i[0]);
+        newStr += String.fromCharCode(lowerCode-32);
+      }
+      else{
+        newStr += strArr[i][0];
+      }
     }
   }
   return newStr;
 }
 
 acronym("there's no free lunch  -  gotta pay yer way");
+
 </script>
 https://repl.it/repls/KnowingNaturalContent

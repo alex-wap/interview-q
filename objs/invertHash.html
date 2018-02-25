@@ -1,0 +1,16 @@
+<script>
+  
+function invertHash(object){
+  var newobj = {};
+  for (var key in object){
+    newobj[object[key]] = key;
+  }
+  return newobj;
+}
+
+var obj = {"name": "Zaphod", "numHeads": 2};
+
+invertHash(obj);
+
+</script>
+https://repl.it/repls/MiniaturePrevailingComputationalscience
