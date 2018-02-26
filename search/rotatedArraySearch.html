@@ -12,38 +12,43 @@ function arrayRotateSearch(arr, value){
     }
   }
   console.log("counter is", counter);
-  var start = 0;
-  var end = size-1;
-  var mid = Math.floor((end-start)/2);
+  console.log("size is", size);
+  var interval = Math.floor(size/2);
+  var mid = (Math.floor(size/2)+counter)%size;
 
-  while(mid !== 0 && mid != size-2){
+  while(interval > 0){
     console.log("mid is",mid);
-    if (arr[mid+counter]%size === value){console.log("found it");return mid;}
+
+    if (arr[mid] === value){console.log("found it");return mid;}
     
-    if (arr[mid+counter]%size > value){
+    if (arr[mid] > value){
       console.log("lower");
-      end = mid;
-      mid = Math.floor((mid)/2);
+      interval = Math.floor(interval/2);
+      if(interval === 0){break;}
+      mid = (size+mid-interval-1)%size;
     }
   
-    if (arr[mid+counter]%size < value){ 
+    if (arr[mid] < value){ 
       console.log("higher");
-      start = mid;
-      mid = Math.floor((end+mid)/2); // 4 => 6 => 7
+      interval = Math.floor(interval/2);
+      if(interval === 0){break;}
+      mid = (mid+interval)%size;
     }
   }
-  if (arr[0] === value){
-    return 0;
+  console.log("mid after loop",mid);
+  if (arr[mid+1] === value){
+    return mid+1;
   }
-  if (arr[size-1] === value){
-    return size-1;
+  if (arr[mid-1] === value){
+    return mid-1;
   }
   console.log(false);
   return false;
 }
-var arr = [16,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-// var arr = [9,10,1,2,3,4,5,6,7,8];
-arrayRotateSearch(arr,10);
+var arr = [16, 17,-1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+// var arr = [6,7,8,9,10,1,2,3,4,5];
+// var arr = [0,1,2,3,4,5,6,7,8,9];
+arrayRotateSearch(arr,11);
 
 </script>
 

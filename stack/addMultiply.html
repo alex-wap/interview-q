@@ -1,0 +1,30 @@
+<script>
+  
+// Evaluate an expression given only single digits and only 2 operators * and +.
+
+
+function addMultiply(str){
+  var arr = str.split("");
+  var stack = [];
+  for (var i = 1; i < arr.length; i+=2){
+    if (arr[i] === "*"){
+      stack.push(i);
+    }
+  }
+  while(stack.length > 0){
+    var index = stack.pop();
+    arr[index-1] = parseInt(arr[index-1])*parseInt(arr[index+1]);
+    arr[index+1] = 0;
+  }
+  var sum = 0;
+  for (var j = 0; j < arr.length; j+=2){
+    sum += parseInt(arr[j]);
+  }
+  return sum;
+}
+
+var str = "1+1+1+2*4*5+2*5+4"; // 57
+addMultiply(str);
+
+</script>
+https://repl.it/repls/FarflungPlumpDividend

@@ -1,0 +1,23 @@
+<script>
+
+// Given an array of numbers, split the array into two where one array contains the sum of n-1 numbers and the other array with all the n-1 elements.
+
+// is this a trick question? Are we given an array of N numbers?
+
+function splitArr(arr){
+  var ansArr = [];
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++){
+    sum += arr[i];
+  }
+  ansArr.push([sum]);
+  ansArr.push(arr);
+  return ansArr;
+}
+
+var arr = [0,1,0,1,0,1,2,1, 2, 3]
+splitArr(arr);
+
+</script>
+
+https://repl.it/repls/PersonalGleefulOperatingenvironment

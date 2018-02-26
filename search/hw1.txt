@@ -1,0 +1,203 @@
+// Answers in JavaScript
+
+// 1. Find the element that appears once in a sorted array where all other elements appear twice one after another. Find that element in 0(logn) complexity.
+
+function singleSorted(arr){
+  var mid = Math.floor(arr.length/2);
+  if (arr.length < 4){
+    if (arr[0] === arr[1]){
+      console.log(arr[2]);
+      return arr[2];
+    }
+    else{
+      console.log(arr[0]);
+      return arr[0];
+    }
+  }
+  if (arr[mid] != arr[mid-1]){
+    return singleSorted(arr.slice(0,mid));
+  }
+  else{
+    return singleSorted(arr.slice(mid+1));
+  }
+}
+
+var arr = [1,1,2,2,3,3,4,5,5,6,6,7,7,8,8];
+var arr2 = [1,1,2,2,3,3,5,5,6,6,7,7,8,8,9];
+var arr3 = [0,1,1,2,2,3,3,5,5,6,6,7,7,8,8];
+
+singleSorted(arr);
+singleSorted(arr2);
+singleSorted(arr3);
+
+// 2. Find the element that appears once in a sorted array where all other elements appear twice one after another. Find that element in 0(logn) complexity.
+
+// A magic index in an array A[0…n-1] is defined to be an index such that A[i] = i. Given a sorted array of distinct integers, write a method to find a magic index if one exists, in an array A. FOLLOW UP: What if the values are not distinct?
+
+// if not distinct, you must check every element (sorting doesn't matter)
+
+function magicIndex(arr){
+  var start = 0;
+  var end = arr.length-1;
+  var mid = Math.floor((end+start)/2);
+  
+  while(mid > 0 && mid < arr.length-1){
+    if (arr[mid] === mid){console.log(mid);return mid;}
+    
+    if (arr[mid] > mid){ 
+      console.log(mid+" going down");
+      end = mid;
+      mid = Math.floor((mid+start)/2);
+    }
+    
+    if (arr[mid] < mid){ 
+      console.log(mid+" going up");
+      start = mid;
+      mid = Math.floor((end+mid)/2)+1;
+    }
+  }
+  if (arr[0] === 0){
+    console.log(0);
+    return 0;
+  }
+  if (arr[arr.length-1] === arr.length-1){
+    console.log(arr.length-1);
+    return arr.length-1;
+  }
+  console.log(false);
+  return false;
+}
+
+var arr = [-1,0,2,5,10,20,30,40,50,60,80,90,100];
+var arr2 = [0,100,101,200,300];
+var arr3 = [-1,0,1];
+var arr4 = [-10,0,2];
+magicIndex(arr);
+magicIndex(arr2);
+magicIndex(arr3);
+magicIndex(arr4);
+
+
+// 3. Given a sorted array of n integers, write code to find an element in the array. You may assume that the array was originally sorted in increasing order.
+
+function arrayRotateSearch(arr, value){
+  var counter = 0;
+  var size = arr.length;
+  if (arr[size-1] < arr[0]){
+    for (var i = 0; i < arr.length-1; i++){
+      counter++;
+      if (arr[i] > arr[i+1]){break;}
+    }
+  }
+  var start = 0;
+  var end = size-1;
+  var mid = Math.floor((end-start)/2);
+
+  while(mid !== 0 && mid < size-2 ){
+    console.log("mid is",mid);
+    if (arr[mid] === value){console.log("found it");return mid;}
+    
+    if (arr[mid] > value){
+      console.log("lower");
+      end = mid;
+      mid = Math.floor((mid)/2);
+    }
+  
+    if (arr[mid] < value){ 
+      console.log("higher");
+      start = mid;
+      mid = Math.floor((end+mid)/2); // 4 => 6 => 7
+    }
+  }
+  if (arr[0] === value){
+    return 0;
+  }
+  if (arr[size-1] === value){
+    return size-1;
+  }
+  console.log(false);
+  return false;
+}
+var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+// var arr = [9,10,1,2,3,4,5,6,7,8];
+arrayRotateSearch(arr,8);
+
+// 4. Given an array that contains numbers from 1 to n-1 and exactly 1 duplicate, find that duplicate.
+
+function findDupe(arr){
+  var size = arr.length;
+  console.log("size is", size);
+  var interval = Math.floor(size/2);
+  var mid = Math.floor(size/2);
+  var start = 0;
+  var end = size-1;
+
+  while(end-start > 2){
+    console.log("mid is",mid);
+
+    if (arr[mid] > mid){
+      console.log("after");
+      start = mid;
+      interval = Math.floor(interval/2);
+      mid = (mid+interval);
+    }
+  
+    if (arr[mid] === mid){ 
+      console.log("before");
+      end = mid;
+      interval = Math.floor(interval/2);
+      mid = (mid-interval);
+    }
+  }
+  return arr[start+1];
+}
+// var arr = [1,1,2]; // 1
+// var arr = [1,2,3,3,4,5,6]; // 3
+// var arr = [1,2,3,4,5,6,7,8,8]; // 8
+var arr = [1,2,3,4,5,6,7,7,8] // 7
+// var arr = [1,1,2,3,4,5,6,7,8,9] // 1
+findDupe(arr);
+
+// 5. Search an element in an array where difference between adjacent elements is 1.
+// For example: arr[] = {8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3}
+// Search for 3 and Output: Found at index 7
+
+function findElement(arr, value){
+  if (arr[0] === value){return "Found at index 0";}
+  else{
+    var travel = Math.abs(arr[0]-value);
+    var i = 0;
+    while(travel > 0){
+      console.log("current index is",travel);
+      if (arr[travel] === value){return "Found at index "+travel;}
+      else{
+        travel += Math.abs(arr[travel]-value);
+        console.log("index is now",travel);
+      }
+    }
+  }
+}
+
+// var arr = [8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3] // index 7
+// var arr = [8, 7, 6, 7, 6, 5, 4, 5, 6, 5, 4, 3] // index 11
+// var arr = [8, 9, 10, 11, 10, 9, 8, 7, 6, 5, 4, 3] // index 11
+var arr = [0,1,0,1,0,1,2,1, 2, 3] // index 11
+findElement(arr,3);
+
+// 6. Given an array of numbers, split the array into two where one array contains the sum of n-1 numbers and the other array with all the n-1 elements.
+
+// is this a trick question? Are we given an array of N numbers?
+
+function splitArr(arr){
+  var ansArr = [];
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++){
+    sum += arr[i];
+  }
+  ansArr.push([sum]);
+  ansArr.push(arr);
+  return ansArr;
+}
+
+var arr = [0,1,0,1,0,1,2,1, 2, 3]
+splitArr(arr);

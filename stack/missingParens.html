@@ -1,0 +1,27 @@
+<script>
+  
+// Find missing parenthesis in a given expression – 2 * ( 3 + 5(sasdfasdfasd)
+
+function missingParens(str){
+  var arr = str.split("");
+  var stack = [];
+  for (var i = 0; i < arr.length;i++){
+    if (arr[i] === "("){
+      stack.push(i);
+    }
+    if (arr[i] === ")" && stack.length === 0){
+      return `index ${i} missing parenthesis`;
+    }
+    if (arr[i] === ")" && stack.length > 0){stack.pop();}
+  }
+  if (stack.length > 0){return `index ${stack.pop()} missing parenthesis`;}
+  else{
+    return true;
+  }
+}
+
+var str = "2 * ( 3 + 5(sasdfasdfasd)";
+missingParens(str);
+
+</script>
+https://repl.it/repls/RoyalblueSphericalRar

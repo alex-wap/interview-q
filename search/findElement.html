@@ -1,0 +1,31 @@
+<script>
+
+// Search an element in an array where difference between adjacent elements is 1.
+// For example: arr[] = {8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3}
+// Search for 3 and Output: Found at index 7
+
+function findElement(arr, value){
+  if (arr[0] === value){return "Found at index 0";}
+  else{
+    var travel = Math.abs(arr[0]-value);
+    var i = 0;
+    while(travel > 0){
+      console.log("current index is",travel);
+      if (arr[travel] === value){return "Found at index "+travel;}
+      else{
+        travel += Math.abs(arr[travel]-value);
+        console.log("index is now",travel);
+      }
+    }
+  }
+}
+
+// var arr = [8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3] // index 7
+// var arr = [8, 7, 6, 7, 6, 5, 4, 5, 6, 5, 4, 3] // index 11
+// var arr = [8, 9, 10, 11, 10, 9, 8, 7, 6, 5, 4, 3] // index 11
+var arr = [0,1,0,1,0,1,2,1, 2, 3] // index 11
+findElement(arr,3);
+
+</script>
+
+https://repl.it/repls/DarkRawScans

@@ -1,0 +1,32 @@
+<script>
+  
+// Reverse a stack and put the reversed value back in the same stack. You can use only one other stack and a temp variable.
+
+function reverseStack(stack){
+  var temp;
+  var tempStack = [];
+
+  var counter = 0;
+  while (counter < stack.length){
+    temp = stack.pop();
+    console.log("temp:",temp);
+    for (var j = stack.length-1; j >= counter; j--){
+      tempStack.push(stack.pop());
+      console.log("tempStack:",tempStack);
+    }
+    stack.push(temp);
+    console.log("stack is",stack);
+    for (var k = tempStack.length-1; k > -1; k--){
+      stack.push(tempStack.pop());
+      console.log("stack:",stack);
+    }
+    counter++;
+  }
+  return stack;
+}
+
+var stack = [1,2,3,4,5]; // [5,4,3,2,1]
+reverseStack(stack);
+
+</script>
+https://repl.it/repls/InvolvedSoreDeveloper

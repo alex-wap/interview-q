@@ -1,0 +1,78 @@
+// Answers in JavaScript
+  
+// 1. Find missing parenthesis in a given expression – 2 * ( 3 + 5(sasdfasdfasd)
+
+function missingParens(str){
+  var arr = str.split("");
+  var stack = [];
+  for (var i = 0; i < arr.length;i++){
+    if (arr[i] === "("){
+      stack.push(i);
+    }
+    if (arr[i] === ")" && stack.length === 0){
+      return `index ${i} missing parenthesis`;
+    }
+    if (arr[i] === ")" && stack.length > 0){stack.pop();}
+  }
+  if (stack.length > 0){return `index ${stack.pop()} missing parenthesis`;}
+  else{
+    return true;
+  }
+}
+
+var str = "2 * ( 3 + 5(sasdfasdfasd)";
+missingParens(str);
+
+// 2. Evaluate an expression given only single digits and only 2 operators * and +.
+
+
+function addMultiply(str){
+  var arr = str.split("");
+  var stack = [];
+  for (var i = 1; i < arr.length; i+=2){
+    if (arr[i] === "*"){
+      stack.push(i);
+    }
+  }
+  while(stack.length > 0){
+    var index = stack.pop();
+    arr[index-1] = parseInt(arr[index-1])*parseInt(arr[index+1]);
+    arr[index+1] = 0;
+  }
+  var sum = 0;
+  for (var j = 0; j < arr.length; j+=2){
+    sum += parseInt(arr[j]);
+  }
+  return sum;
+}
+
+var str = "1+1+1+2*4*5+2*5+4"; // 57
+addMultiply(str);
+
+// 3. Reverse a stack and put the reversed value back in the same stack. You can use only one other stack and a temp variable.
+
+function reverseStack(stack){
+  var temp;
+  var tempStack = [];
+
+  var counter = 0;
+  while (counter < stack.length){
+    temp = stack.pop();
+    console.log("temp:",temp);
+    for (var j = stack.length-1; j >= counter; j--){
+      tempStack.push(stack.pop());
+      console.log("tempStack:",tempStack);
+    }
+    stack.push(temp);
+    console.log("stack is",stack);
+    for (var k = tempStack.length-1; k > -1; k--){
+      stack.push(tempStack.pop());
+      console.log("stack:",stack);
+    }
+    counter++;
+  }
+  return stack;
+}
+
+var stack = [1,2,3,4,5]; // [5,4,3,2,1]
+reverseStack(stack);
