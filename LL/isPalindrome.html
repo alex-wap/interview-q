@@ -1,0 +1,55 @@
+
+<script>
+// check if LL is a palindrome
+
+
+function Node(val) {
+  this.val = val;
+  this.next = null;
+}
+
+function SLL() {
+  this.head = null;
+  
+  SLL.prototype.isPal = function(){
+    var arr = [];
+    var cur = this.head;
+    while(cur){
+      arr.push(cur.val);
+      cur = cur.next;
+    }
+    cur = this.head;
+    while(cur){
+      if(cur.val !== arr.pop()){
+        return false;
+      }
+      cur = cur.next;
+    }
+    return true;
+  }
+  
+  SLL.prototype.print = function(){
+    var node = this.head;
+    while(node){
+      console.log(node.val);
+      node = node.next;
+    }
+    console.log(this);
+  }
+  
+}
+
+var node1=new Node(1);
+var node2=new Node(2);
+var node3=new Node(2);
+var node4=new Node(1);
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+var sLL = new SLL();
+sLL.head=node1;
+sLL.print();
+sLL.isPal();
+
+</script>
+https://repl.it/repls/FuchsiaPlumpMice
