@@ -1,0 +1,51 @@
+<script>
+  
+// Find the element that appears once in a sorted array where all other elements appear twice one after another. Find that element in 0(logn) complexity.
+
+// A magic index in an array A[0…n-1] is defined to be an index such that A[i] = i. Given a sorted array of distinct integers, write a method to find a magic index if one exists, in an array A. FOLLOW UP: What if the values are not distinct?
+
+// if not distinct, you must check every element (sorting doesn't matter)
+
+function magicIndex(arr){
+  var start = 0;
+  var end = arr.length-1;
+  var mid = Math.floor((end+start)/2);
+  
+  while(mid > 0 && mid < arr.length-1){
+    if (arr[mid] === mid){console.log(mid);return mid;}
+    
+    if (arr[mid] > mid){ 
+      console.log(mid+" going down");
+      end = mid;
+      mid = Math.floor((mid+start)/2);
+    }
+    
+    if (arr[mid] < mid){ 
+      console.log(mid+" going up");
+      start = mid;
+      mid = Math.floor((end+mid)/2)+1;
+    }
+  }
+  if (arr[0] === 0){
+    console.log(0);
+    return 0;
+  }
+  if (arr[arr.length-1] === arr.length-1){
+    console.log(arr.length-1);
+    return arr.length-1;
+  }
+  console.log(false);
+  return false;
+}
+
+var arr = [-1,0,2,5,10,20,30,40,50,60,80,90,100];
+var arr2 = [0,100,101,200,300];
+var arr3 = [-1,0,1];
+var arr4 = [-10,0,2];
+magicIndex(arr);
+magicIndex(arr2);
+magicIndex(arr3);
+magicIndex(arr4);
+
+</script>
+https://repl.it/repls/KhakiWrongFunnel

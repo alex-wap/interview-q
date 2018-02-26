@@ -1,0 +1,34 @@
+<script>
+  
+// Find the element that appears once in a sorted array where all other elements appear twice one after another. Find that element in 0(logn) complexity.
+
+function singleSorted(arr){
+  var mid = Math.floor(arr.length/2);
+  if (arr.length < 4){
+    if (arr[0] === arr[1]){
+      console.log(arr[2]);
+      return arr[2];
+    }
+    else{
+      console.log(arr[0]);
+      return arr[0];
+    }
+  }
+  if (arr[mid] != arr[mid-1]){
+    return singleSorted(arr.slice(0,mid));
+  }
+  else{
+    return singleSorted(arr.slice(mid+1));
+  }
+}
+
+var arr = [1,1,2,2,3,3,4,5,5,6,6,7,7,8,8];
+var arr2 = [1,1,2,2,3,3,5,5,6,6,7,7,8,8,9];
+var arr3 = [0,1,1,2,2,3,3,5,5,6,6,7,7,8,8];
+
+singleSorted(arr);
+singleSorted(arr2);
+singleSorted(arr3);
+
+</script>
+https://repl.it/repls/BelatedIvoryWearables

@@ -1,0 +1,50 @@
+<script>
+
+// Given a sorted array of n integers that has been rotated an unknown number of times, write code to find an element in the array. You may assume that the array was originally sorted in increasing order.
+
+function arrayRotateSearch(arr, value){
+  var counter = 0;
+  var size = arr.length;
+  if (arr[size-1] < arr[0]){
+    for (var i = 0; i < arr.length-1; i++){
+      counter++;
+      if (arr[i] > arr[i+1]){break;}
+    }
+  }
+  console.log("counter is", counter);
+  var start = 0;
+  var end = size-1;
+  var mid = Math.floor((end-start)/2);
+
+  while(mid !== 0 && mid != size-2){
+    console.log("mid is",mid);
+    if (arr[mid+counter]%size === value){console.log("found it");return mid;}
+    
+    if (arr[mid+counter]%size > value){
+      console.log("lower");
+      end = mid;
+      mid = Math.floor((mid)/2);
+    }
+  
+    if (arr[mid+counter]%size < value){ 
+      console.log("higher");
+      start = mid;
+      mid = Math.floor((end+mid)/2); // 4 => 6 => 7
+    }
+  }
+  if (arr[0] === value){
+    return 0;
+  }
+  if (arr[size-1] === value){
+    return size-1;
+  }
+  console.log(false);
+  return false;
+}
+var arr = [16,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+// var arr = [9,10,1,2,3,4,5,6,7,8];
+arrayRotateSearch(arr,10);
+
+</script>
+
+https://repl.it/repls/NumbRigidVariety
