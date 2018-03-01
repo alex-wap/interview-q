@@ -1,0 +1,104 @@
+<script>
+  
+// length, average, min/max, display
+
+var SLL = class {
+  constructor() {
+    this.head = null;
+  }
+};
+
+var SLLNode = class {
+  constructor(value) {
+    this.val = value;
+    this.next = null;
+  }
+};
+
+SLL.prototype.print = function(){
+  var cur = this.head;
+  while (cur){
+    console.log(cur.val);
+    cur = cur.next;
+  }
+}
+
+SLL.prototype.length = function(){
+  var cur = this.head;
+  var counter = 0;
+  if (!cur){return counter;}
+  while (cur){
+    counter++;
+    cur = cur.next;
+  }
+  console.log("counter is",counter);
+  return counter;
+}
+
+SLL.prototype.average = function(){
+  var cur = this.head;
+  var counter = 0;
+  var sum = 0;
+  if (!cur){return sum;}
+  while (cur){
+    sum += cur.val;
+    counter++;
+    cur = cur.next;
+  }
+  console.log("average is",sum/counter);
+  return sum/counter;
+}
+
+SLL.prototype.min = function(){
+  var cur = this.head;
+  var min = this.head.val;
+  while (cur){
+    if(cur.val < min){
+      min = cur.val;
+      
+    }
+    cur = cur.next;
+  }
+  console.log("min is",min);
+  return min;
+}
+
+SLL.prototype.max = function(){
+  var cur = this.head;
+  var max = this.head.val;
+  while (cur){
+    if(cur.val > max){
+      max = cur.val;
+      
+    }
+    cur = cur.next;
+  }
+  console.log("max is",max);
+  return max;
+}
+
+SLL.prototype.display = function(){
+  var cur = this.head;
+  var str = "";
+  while (cur){
+    str+=cur.val+" ";
+    cur = cur.next;
+  }
+  console.log(str);
+  return str;
+}
+
+var sLL = new SLL();
+sLL.head = new SLLNode(1);
+sLL.head.next = new SLLNode(2);
+sLL.head.next.next = new SLLNode(3);
+sLL.print();
+sLL.length();
+sLL.average();
+sLL.min();
+sLL.max();
+sLL.display();
+
+
+</script>
+https://repl.it/repls/TalkativeSnarlingStatistics

@@ -1,0 +1,71 @@
+<script>
+
+
+// addFront, removeFront, contains, front
+
+var SLL = class {
+  constructor() {
+    this.head = null;
+  }
+};
+
+var SLLNode = class {
+  constructor(value) {
+    this.val = value;
+    this.next = null;
+  }
+};
+
+SLL.prototype.print = function(){
+  var cur = this.head;
+  while (cur){
+    console.log(cur.val);
+    cur = cur.next;
+  }
+}
+
+SLL.prototype.addFront = function(value){
+  var temp = this.head;
+  this.head = new SLLNode(value);
+  this.head.next = temp;
+}
+
+SLL.prototype.removeFront = function(){
+  this.head = this.head.next;
+}
+
+SLL.prototype.contains = function(value){
+  var cur = this.head;
+  while (cur){
+    if(cur.val === value){
+      console.log("true");
+      return true;}
+    cur = cur.next;
+  }
+  console.log("false");
+  return false;
+}
+
+SLL.prototype.front = function(){
+  console.log(this.head.val);
+  return this.head.val;
+}
+
+var sLL = new SLL();
+sLL.head = new SLLNode(1);
+
+console.log("before");
+sLL.print();
+sLL.addFront(2);
+console.log("after");
+sLL.contains(2);
+sLL.print();
+sLL.removeFront();
+console.log("removed");
+sLL.contains(2);
+sLL.print();
+console.log("front");
+sLL.front();
+
+</script>
+https://repl.it/repls/GiftedAnxiousColdfusion
