@@ -1,0 +1,61 @@
+
+<script>
+//Write code to remove duplicates from an unsorted linked list. Follow up: How would you solve it if temporary buffer is not allowed?
+
+function Node(val) {
+  this.val = val;
+  this.next = null;
+}
+
+function SLL() {
+  this.head = null;
+  
+  SLL.prototype.print = function(){
+    var counter = 0;
+    var node = this.head;
+    while(node){
+      console.log(node.val);
+      node = node.next;
+      counter++;
+    }
+    console.log("length is",counter);
+    console.log(this);
+  }
+  
+  SLL.prototype.removeDupes = function(){
+    var current = this.head;
+    var hash={};
+    var prev;
+    // add new nodes inline
+    while(current){
+      if(hash[current.val] !== 1){
+        hash[current.val] = 1;
+        prev = current;
+        current = current.next;
+      }
+      else{
+        prev.next = prev.next.next;
+        current = prev.next;
+      }
+    }
+  }
+  
+}
+
+var node1=new Node(1);
+var node2=new Node(1);
+var node3=new Node(1);
+var node4=new Node(4);
+
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+
+var sLL = new SLL();
+sLL.head=node1;
+sLL.print();
+sLL.removeDupes();
+sLL.print();
+
+</script>
+https://repl.it/repls/FlawedKindlyHertz
