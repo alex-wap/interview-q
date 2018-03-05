@@ -1,0 +1,79 @@
+
+<script>
+// Clone a linked list with a random pointer.
+
+function Node(val) {
+  this.val = val;
+  this.next = null;
+  this.rand = null;
+}
+
+function SLL() {
+  this.head = null;
+  
+  SLL.prototype.print = function(){
+    var node = this.head;
+    while(node){
+      console.log("val:",node.val);
+      console.log("rand:",node.rand.val);
+      node = node.next;
+    }
+    console.log(this);
+  }
+  
+  SLL.prototype.copy = function(){
+    var current = this.head;
+    var temp;
+    // add new nodes inline
+    while(current){
+      console.log("current val:",current.val);
+      temp = new Node(current.val);
+      temp.next = current.next;
+      current.next = temp;
+      current = current.next.next;
+    }
+    
+    // get rand pointers for copy
+    current = this.head;
+    while(current){
+      current.next.rand = current.rand;
+      current = current.next.next;
+    }
+    
+    // dettach new SLL
+    current = this.head;
+    var newSLL = new SLL();
+    newSLL.head = current.next;
+    while(current.next.next){
+      temp = current.next;
+      current.next = temp.next;
+      temp.next = temp.next.next;
+      current = current.next;
+    }
+    return newSLL;
+  }
+  
+}
+
+var node1=new Node(1);
+var node2=new Node(2);
+var node3=new Node(3);
+var node4=new Node(4);
+
+// 1 -> 2 -> 2 -> back to 1
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+node1.rand = node4;
+node2.rand = node1;
+node3.rand = node2;
+node4.rand = node3;
+
+var sLL = new SLL();
+sLL.head=node1;
+sLL.print();
+sLL.copy();
+// sLL.print();
+
+</script>
+https://repl.it/repls/PlaintiveWiseRobodoc
