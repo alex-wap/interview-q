@@ -1,0 +1,134 @@
+<script>
+function dlNode(value) {
+  this.val = value;
+  this.prev = null;
+  this.next = null;
+}
+
+function dList() {
+  this.head = null;
+  this.tail = null;
+  this.pushNode = function (val) {
+      // Add a node at the end of the dList with a value of (val)
+      try {
+        if(!this.head){this.head = new dlNode(val);this.tail=this.head;return;}
+        else{
+          this.tail.next = new dlNode(val);
+          this.tail.next.prev = this.tail;
+          this.tail = this.tail.next;
+          return
+        }
+      } catch (err) { console.log("Invalid Code", err); }
+  }
+  this.kthToLastValue = function (k) {
+      // Given k, return the value ‘k’ from a dList’s end. (K from last meaning # of nodes away from the last node.)
+      // kthToLast(list, k)
+      // Given: (1) <--> (2) <--> (3) <--> (4) , 2 
+      // (last node being (4), return the node 2 positions before the last node, in this case the node (2))
+      // Return: (2)
+      var current = this.tail;
+      for(var i = 0; i < k; i++){
+        current = current.prev;
+      }
+      return current.val;
+  }
+  this.isValidDlist = function () {
+      // Determine whether given dList is well-formed and valid: whether next and prev pointers match, etc. 
+      // Given: (1) <--> (2) <--> (3) <--> (4)
+      // Return: true
+      // Given:  (1) <--> (2) <--> (3)  x--> (4) (Node 4 is missing it’s prev pointer)
+      // Return: false
+      if(!this.head || !this.tail){return false;}
+      if(this.head === this.tail){return true;}
+      var current = this.head;
+      while(current){
+        if(current === this.head && current.next){
+          current = current.next;
+          continue;
+        }
+        if(current === this.tail && current.prev){
+          return true;
+        }
+        if(!current.next || !current.prev){
+          return false;
+        }
+        current = current.next;
+      }
+      return true;
+  }
+  this.prependValue = function (val, mark) {
+      // Add a dlNode with the value of (val), before the first Node in the list with the value of (mark)
+      // With a dList of (1)<=>(2)<=>(3)<=>(4), val of 9 and mark of 3
+      // Alter the dList to (1)<=>(2)<=>(9)<=>(3)<=>(4)
+      if(this.head.val === mark){
+        var node = new dlNode(val);
+        node.next = this.head;
+        this.head.prev = node;
+        this.head = node;
+        return;
+      }
+      var prev = this.head;
+      var current = prev.next;
+      while(current){
+        if(current.val === mark){
+          var addNode = new dlNode(val);
+          addNode.next = current;
+          current.prev = addNode;
+          prev.next = addNode;
+          return;
+        }
+        current = current.next;
+      }
+
+  }
+  this.isPalindrome = function () {
+    // Identify if the list is a palindrome.
+    // With a dList of (1)<=>(2)<=>(2)<=>(1) return true
+    // With a dList of (1)<=>(2)<=>(3)<=>(4)<=>(1) return false
+      var start = this.head;
+      var end = this.tail;
+      while(start && end){
+        if(start.val !== end.val){
+          return false;
+        }
+        start = start.next;
+        end = end.prev;
+      }
+      return true;
+    }
+  this.loopStart = function () {
+    // Given a dList that may contain a loop, return a pointer to the node where the loop begins (or null if no loop).
+    // Given: (1) <--> (2) <--> (3) <--> (node (3) points back to the first node)
+    // Return: (3) (return the node, which starts the loop, in this case, node 3 is starting the loop because it points back to node1)
+    var current = this.head;
+    var fast = this.head.next;
+    while(fast){
+      if(current === fast){
+        current = this.head;
+        for(var i = 0; i < 100; i++){
+        // while(current !== fast){
+          if(current === fast){return current;}
+          current = current.next;
+          fast = fast.next;
+        }
+        return current;
+      }
+      current = current.next;
+      fast = fast.next.next;
+    }
+    return null;
+  }
+}
+// 1-2-3-4-5-2
+var dLL = new dList();
+dLL.pushNode(1);
+dLL.pushNode(2);
+dLL.pushNode(3);
+dLL.pushNode(4);
+dLL.pushNode(5);
+
+dLL.tail.next = dLL.head.next;
+dLL.loopStart();
+
+</script>
+https://repl.it/repls/BlandUniformRatios
